@@ -1,6 +1,8 @@
 import click
 from ..Engine import make_call
 from ..CLI import params as p
+from AssistMe import __version__
+
 
 @click.group()
 @click.pass_context
@@ -23,6 +25,11 @@ def simple(ctx: click.core.Context, **kwargs) -> None:
 def chat(ctx: click.core.Context, **kwargs) -> None:
     ctx = p.parse_params(ctx, **kwargs)
     make_call(ctx)
+
+@cli.command('version')
+@click.pass_context
+def version(ctx: click.core.Context, **kwargs) -> None:
+    click.echo(f"AssistMe version: {__version__}")
 
 if __name__ == '__main__':
     cli(obj={})
