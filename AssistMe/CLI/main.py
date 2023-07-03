@@ -2,7 +2,7 @@ import click
 from ..Engine import make_call
 
 @click.group()
-@click.option('--model','-m', default='gpt3', 
+@click.option('--model','-m', default='GPT3', 
               type=click.Choice(['GPT3', 'GPT4'], case_sensitive=False),
               help='Model to use for generating text')
 @click.pass_context
