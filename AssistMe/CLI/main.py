@@ -5,12 +5,13 @@ from ..Engine import make_call
 @click.option('--model','-m', default='GPT3', 
               type=click.Choice(['GPT3', 'GPT4'], case_sensitive=False),
               help='Model to use for generating text')
+@click.option('--name', '-n', default='Assistant')
 @click.pass_context
-def cli(ctx: click.core.Context, model) -> None:
+def cli(ctx: click.core.Context, model: str, name: str) -> None:
     ctx.ensure_object(dict)
 
     ctx.obj['model'] = model
-    pass
+    ctx.obj['name'] = name
 
 @cli.command('simple')
 @click.pass_context
