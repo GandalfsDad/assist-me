@@ -1,4 +1,5 @@
 import click
+from ..Engine import make_call
 
 @click.group()
 @click.option('--model','-m', default='gpt3', 
@@ -13,13 +14,15 @@ def cli(ctx, model):
 
 @cli.command('simple')
 @click.pass_context
-def simple(ctx):
-    click.echo(f"model: {ctx.obj['model']}")
+@click.option('--input', '-i',prompt = "Input", help='Input text')
+def simple(ctx, input):
+    ctx.obj['input'] = input
+    make_call(ctx)
 
 @cli.command('chat')
 @click.pass_context
 def chat(ctx):
-    click.echo(f"model: {ctx.obj['model']}")
+    make_call(ctx)
 
 if __name__ == '__main__':
     cli(obj={})
