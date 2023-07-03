@@ -13,7 +13,7 @@ class Chat:
     def _setup(self) -> None:
         self.__history.append({"role":"system","content":self.__system_prompt})
 
-    def genResponse(self, input : str) -> str:
+    def generate_response(self, input : str) -> str:
         self.__history.append({"role":"user","content":input})
         response = openai.ChatCompletion.create(
             model=self.model,
@@ -30,5 +30,5 @@ class Chat:
             input_text = input("Input: ")
             if input_text.lower() in ["exit","q","quit","exit()","quit()","kill"]:
                 break
-            response = self.genResponse(input_text)
+            response = self.generate_response(input_text)
             print(f"Response: {response}")

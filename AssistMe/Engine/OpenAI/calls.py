@@ -10,7 +10,7 @@ def make_simple_call(ctx, **kwargs) -> None:
         raise NotImplementedError(f"Model [{model}] is not implemented")
 
     chat = Chat(model=_model)
-    response = chat.genResponse(ctx.obj['input'])
+    response = chat.generate_response(ctx.obj['input'])
 
     print(f"Response: {response}")
     
