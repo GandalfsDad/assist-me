@@ -7,7 +7,6 @@ from ..Engine import make_call
               help='Model to use for generating text')
 @click.pass_context
 def cli(ctx: click.core.Context, model) -> None:
-    print(type(ctx))
     ctx.ensure_object(dict)
 
     ctx.obj['model'] = model

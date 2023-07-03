@@ -1,7 +1,7 @@
 from .chat import Chat
-import click.core.Context
+from click.core import Context
 
-def make_simple_call(ctx: click.core.Context, **kwargs) -> None:
+def make_simple_call(ctx: Context, **kwargs) -> None:
     model = ctx.obj['model']
     if model == 'GPT3':
         _model = 'gpt-3.5-turbo'
@@ -15,7 +15,7 @@ def make_simple_call(ctx: click.core.Context, **kwargs) -> None:
 
     print(f"Response: {response}")
     
-def make_chat_call(ctx: click.core.Context, **kwargs) -> None:
+def make_chat_call(ctx: Context, **kwargs) -> None:
     model = ctx.obj['model']
     if model == 'GPT3':
         _model = 'gpt-3.5-turbo'
