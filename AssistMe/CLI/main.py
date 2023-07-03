@@ -1,28 +1,37 @@
 import click
 from ..Engine import make_call
+from ..CLI import params as p
+from AssistMe import __version__
+
 
 @click.group()
-@click.option('--model','-m', default='GPT3', 
-              type=click.Choice(['GPT3', 'GPT4'], case_sensitive=False),
-              help='Model to use for generating text')
 @click.pass_context
-def cli(ctx: click.core.Context, model) -> None:
+def cli(ctx: click.core.Context, **kwargs) -> None:
     ctx.ensure_object(dict)
-
-    ctx.obj['model'] = model
-    pass
 
 @cli.command('simple')
 @click.pass_context
-@click.option('--input', '-i',prompt = "Input", help='Input text')
-def simple(ctx: click.core.Context, input: str) -> None:
-    ctx.obj['input'] = input
+@p._model
+@p._name
+@p._input
+@p._system
+def simple(ctx: click.core.Context, **kwargs) -> None:
+    ctx = p.parse_params(ctx, **kwargs)
     make_call(ctx)
 
 @cli.command('chat')
 @click.pass_context
-def chat(ctx: click.core.Context) -> None:
+@p._model
+@p._name
+@p._system
+def chat(ctx: click.core.Context, **kwargs) -> None:
+    ctx = p.parse_params(ctx, **kwargs)
     make_call(ctx)
+
+@cli.command('version')
+@click.pass_context
+def version(ctx: click.core.Context, **kwargs) -> None:
+    click.echo(f"AssistMe version: {__version__}")
 
 if __name__ == '__main__':
     cli(obj={})
