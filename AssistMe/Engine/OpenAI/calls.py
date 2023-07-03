@@ -19,6 +19,7 @@ def setup_chat(ctx: Context) -> Chat:
     else:
         raise NotImplementedError(f"Model [{model}] is not implemented")
 
-    chat = Chat(model=_model, name=ctx.obj['name'])
+
+    chat = Chat(model=_model, name=ctx.obj['name'], system_prompt=ctx.obj['system'])
 
     return chat

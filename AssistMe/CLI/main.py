@@ -14,6 +14,7 @@ def cli(ctx: click.core.Context, **kwargs) -> None:
 @p._model
 @p._name
 @p._input
+@p._system
 def simple(ctx: click.core.Context, **kwargs) -> None:
     ctx = p.parse_params(ctx, **kwargs)
     make_call(ctx)
@@ -22,6 +23,7 @@ def simple(ctx: click.core.Context, **kwargs) -> None:
 @click.pass_context
 @p._model
 @p._name
+@p._system
 def chat(ctx: click.core.Context, **kwargs) -> None:
     ctx = p.parse_params(ctx, **kwargs)
     make_call(ctx)

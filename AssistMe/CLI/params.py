@@ -1,4 +1,5 @@
 import click
+from ..Engine.OpenAI import BASE_SYSTEM_PROMPT
 
 _name = click.option('--name', '-n', 
                         default='Assistant', 
@@ -12,6 +13,10 @@ _model = click.option('--model','-m',
 _input = click.option('--input', '-i',
                         prompt = "You", 
                         help='Input text')
+
+_system = click.option('--system', '-s',
+                        default=BASE_SYSTEM_PROMPT,
+                        help='System prompt')
 
 def parse_params(ctx: click.core.Context, **kwargs):
     for key, value in kwargs.items():
