@@ -14,7 +14,7 @@ def cli(ctx: click.core.Context, model) -> None:
 
 @cli.command('simple')
 @click.pass_context
-@click.option('--input', '-i',prompt = "Input", help='Input text')
+@click.option('--input', '-i',prompt = "You", help='Input text')
 def simple(ctx: click.core.Context, input: str) -> None:
     ctx.obj['input'] = input
     make_call(ctx)

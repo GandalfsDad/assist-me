@@ -27,7 +27,7 @@ class Chat:
     
     def interactive(self) -> None:
         while True:
-            input_text = input("Input: ")
+            input_text = input("You: ")
             if input_text.lower() in ["exit","q","quit","exit()","quit()","kill"]:
                 break
             response = self.generate_response(input_text)
