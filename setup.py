@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="AssistMe",
-    version="0.0.1",
+    version="0.0.2",
     author="GandalfsDad",
     description="CLI GPT helper",
     long_description=long_description,
