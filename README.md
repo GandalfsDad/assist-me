@@ -40,12 +40,32 @@ assistme chat
 ```
 The chat interface will await a user input  and then respond and await another input until you kill the process or type `exit`,`q`, or `quit`.
 
+---
 ### Options
-The only global option currently is the `model` option which can be used to specify the model to use.
-Currently only gpt3 and gpt4 are supported, with gpt3 being the default.
+
+#### --name / -n [name]
+The `name` option can be used to specify the name of the Assistant. This is mostly only relevant for chat but possible to use with simple as well.
 
 ```bash
-assistme --model gpt4 chat
->>>Input: 
+assistme simple --name "Gandalf"
 ```
+
+#### --model / -m [model]
+The `model` option can be used to specify the model to use. Currently only `gpt3` and `gpt4` are possible with 3 being the default.
+Values are not case sensitive.
+
+```bash
+assistme simple --model gpt4
+```
+
+#### --system / -s [system]
+The `system` option can be used to specify the system message.
+
+```bash
+assistme simple --system "You are Gandalf the wizard from Tolkien's Novels. You respond only as he would"
+```
+
+#### --input / -i [input]
+This is an option for the `simple` command only. If it is ommited you will be prompted for input.
+
 ---
