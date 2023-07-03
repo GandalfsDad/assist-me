@@ -20,8 +20,7 @@ setup(
     install_requires=[
         'openai',
         'colorama',
-        'numpy',
-        'guidance'
+        'click'
     ],
     packages=find_packages(),
     entry_points={
