@@ -18,6 +18,10 @@ _system = click.option('--system', '-s',
                         default=BASE_SYSTEM_PROMPT,
                         help='System prompt')
 
+_profile = click.option('--profile', '-p',
+                        default='base',
+                        help='Profile Name')
+
 def parse_params(ctx: click.core.Context, **kwargs):
     for key, value in kwargs.items():
         ctx.obj[key] = value
