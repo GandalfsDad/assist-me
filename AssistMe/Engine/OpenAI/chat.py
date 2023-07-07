@@ -1,6 +1,7 @@
 import openai
 from .pompts import BASE_SYSTEM_PROMPT
 from ...CLI.format import format_input, format_response
+import click
 
 class Chat:
 
@@ -25,11 +26,11 @@ class Chat:
         response_text = response['choices'][0]['message']['content']
 
         self.__history.append({"role":"system","content":response_text})
-        print(format_response(self.name, response_text))
+        click.echo(format_response(self.name, response_text))
     
     def interactive(self) -> None:
         while True:
-            input_text = input(format_input("You: "))
+            input_text = click.prompt(format_input("You: "))
             if input_text.lower() in ["exit","q","quit","exit()","quit()","kill"]:
                 break
             self.generate_response(input_text)
