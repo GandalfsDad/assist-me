@@ -16,9 +16,10 @@ export OPENAI_API_KEY=<your key here>
 
 ---
 ## Usage
-There are two supported subcommands: `chat` and `simple`.
+There are two supported interaction subcommands: `chat` and `simple`.
 Simple is a one response version of chat where you can ask a question and get a single response.
 Chat is a more interactive version where you can ask multiple questions and get multiple responses.
+
 
 ### Simple
 ```bash
@@ -39,6 +40,37 @@ assistme chat
 >>>Input: 
 ```
 The chat interface will await a user input  and then respond and await another input until you kill the process or type `exit`,`q`, or `quit`.
+
+
+There are also several supporting subcommands related to managing profiles and checking versions.
+
+### Profile Commands
+
+`save-profile` - saves a profile to file
+```bash
+assistme save-profile --profile "Gandalf" --system "You are Gandalf the wizard from Tolkien's Novels. You respond only as he would"
+```
+
+`show-profile` - shows the details of a profile
+```bash
+assistme show-profile --profile "Gandalf"
+>>> Profile: Gandalf
+>>> System: You are Gandalf the wizard from Tolkien's Novels. You respond only as he would
+```
+
+`show-profiles` - shows all saved profiles
+```bash
+assistme show-profiles
+Found 1 profiles
+>>> Profile: Gandalf
+>>> Prompt: You are Gandalf the wizard from Tolkien's Novels. You respond only as he would
+```
+
+### Version
+```bash
+assistme version
+>>> AssistMe version: 0.0.4
+```
 
 ---
 ### Options
@@ -63,6 +95,16 @@ The `system` option can be used to specify the system message.
 
 ```bash
 assistme simple --system "You are Gandalf the wizard from Tolkien's Novels. You respond only as he would"
+```
+
+### --profile / -p [profile]
+The `profile` option can be used to specify the profile to use. If not provided the default profile will be used.
+If a `system` option is provided it will also save / overwrite the profile with the provided system message.
+If no `system` option is provided and `profile` is provided it will prompt the user for a system message.
+
+```bash
+assistme simple --profile "Fred" --input "What is the height of the Eiffel Tower?"
+>>>System Prompt:
 ```
 
 #### --input / -i [input]
