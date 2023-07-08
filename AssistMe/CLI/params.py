@@ -1,5 +1,6 @@
 import click
 from ..Engine.OpenAI import BASE_SYSTEM_PROMPT
+from .profile import load_profile, save_profile
 
 _name = click.option('--name', '-n', 
                         default='Assistant', 
@@ -23,6 +24,18 @@ _profile = click.option('--profile', '-p',
                         help='Profile Name')
 
 def parse_params(ctx: click.core.Context, **kwargs):
+
+    if kwargs['profile'].lower() != 'base':
+        if kwargs['system'] == BASE_SYSTEM_PROMPT:
+            try:
+                kwargs['system'] = load_profile(kwargs['profile'].lower())
+            except FileNotFoundError:
+                click.echo("Profile not found please create profile.")
+                profile_prompt = click.prompt("System Prompt")
+                save_profile(kwargs['profile'].lower(), profile_prompt)
+        else:
+            save_profile(kwargs['profile'].lower(), kwargs['system'])
+
     for key, value in kwargs.items():
         ctx.obj[key] = value
     return ctx
