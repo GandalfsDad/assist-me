@@ -1,5 +1,5 @@
 import click
-from ..Engine.OpenAI import BASE_SYSTEM_PROMPT
+from ..Engine.OpenAI import BASE_SYSTEM_PROMPT, DEFAULT_MAX_TOKENS, DEFAULT_TEMPERATURE
 from .profile import load_profile, save_profile
 
 _name = click.option('--name', '-n', 
@@ -22,6 +22,14 @@ _system = click.option('--system', '-s',
 _profile = click.option('--profile', '-p',
                         default='base',
                         help='Profile Name')
+
+_max_tokens = click.option('--max-tokens',
+                        default=DEFAULT_MAX_TOKENS,
+                        help='Max tokens for OpenAI Model')
+
+_temperature = click.option('--temperature',
+                        default=DEFAULT_TEMPERATURE,
+                        help='Temperature for OpenAI Model')
 
 def parse_params(ctx: click.core.Context, **kwargs):
 
