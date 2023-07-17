@@ -17,6 +17,8 @@ def cli(ctx: click.core.Context, **kwargs) -> None:
 @p._input
 @p._system
 @p._profile
+@p._max_tokens
+@p._temperature
 def simple(ctx: click.core.Context, **kwargs) -> None:
     ctx = p.parse_params(ctx, **kwargs)
     make_call(ctx)
@@ -27,6 +29,8 @@ def simple(ctx: click.core.Context, **kwargs) -> None:
 @p._name
 @p._system
 @p._profile
+@p._max_tokens
+@p._temperature
 def chat(ctx: click.core.Context, **kwargs) -> None:
     ctx = p.parse_params(ctx, **kwargs)
     make_call(ctx)

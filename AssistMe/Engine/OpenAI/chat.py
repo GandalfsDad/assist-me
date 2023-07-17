@@ -1,13 +1,15 @@
 import openai
-from .pompts import BASE_SYSTEM_PROMPT
+from .defaults import DEFAULT_SYSTEM_PROMPT, DEFAULT_MAX_TOKENS, DEFAULT_TEMPERATURE
 from ...CLI.format import format_input, format_response
 import click
 
 class Chat:
 
-    def __init__(self, model: str, name: str, system_prompt : str = BASE_SYSTEM_PROMPT):
+    def __init__(self, model: str, name: str, system_prompt : str = DEFAULT_SYSTEM_PROMPT, max_tokens : int = DEFAULT_MAX_TOKENS, temperature : float = DEFAULT_TEMPERATURE):
         self.model = model
         self.name = name
+        self.__max_tokens = max_tokens
+        self.__temperature = temperature
         self.__history = []
         self.__system_prompt = system_prompt
 
@@ -21,6 +23,8 @@ class Chat:
         response = openai.ChatCompletion.create(
             model=self.model,
             messages=self.__history,
+            max_tokens=self.__max_tokens,
+            temperature=self.__temperature
         )
 
         response_text = response['choices'][0]['message']['content']

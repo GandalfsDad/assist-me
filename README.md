@@ -97,7 +97,7 @@ The `system` option can be used to specify the system message.
 assistme simple --system "You are Gandalf the wizard from Tolkien's Novels. You respond only as he would"
 ```
 
-### --profile / -p [profile]
+#### --profile / -p [profile]
 The `profile` option can be used to specify the profile to use. If not provided the default profile will be used.
 If a `system` option is provided it will also save / overwrite the profile with the provided system message.
 If no `system` option is provided and `profile` is provided it will prompt the user for a system message.
@@ -107,7 +107,23 @@ assistme simple --profile "Fred" --input "What is the height of the Eiffel Tower
 >>>System Prompt:
 ```
 
+#### --max-tokens [max-tokens]
+Sets the max tokens for the API call. This is the maximum number of tokens that will be returned in the response.
+Default is 750.
+
+```bash
+assistme chat --max-tokens 100
+```
+
+#### --temperature [temperature]
+Sets the temperature for the API call. This is the randomness of the response. The higher the number the more random the
+response. Default is 0.5.
+
+```bash
+assistme chat --temperature 0.2
+```
+
 #### --input / -i [input]
-This is an option for the `simple` command only. If it is ommited you will be prompted for input.
+This is an option for the `simple` command only. If it is omitted you will be prompted for input.
 
 ---

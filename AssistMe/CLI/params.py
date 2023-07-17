@@ -1,5 +1,5 @@
 import click
-from ..Engine.OpenAI import BASE_SYSTEM_PROMPT
+from ..Engine.OpenAI import DEFAULT_SYSTEM_PROMPT, DEFAULT_MAX_TOKENS, DEFAULT_TEMPERATURE
 from .profile import load_profile, save_profile
 
 _name = click.option('--name', '-n', 
@@ -16,17 +16,25 @@ _input = click.option('--input', '-i',
                         help='Input text')
 
 _system = click.option('--system', '-s',
-                        default=BASE_SYSTEM_PROMPT,
+                        default=DEFAULT_SYSTEM_PROMPT,
                         help='System prompt')
 
 _profile = click.option('--profile', '-p',
                         default='base',
                         help='Profile Name')
 
+_max_tokens = click.option('--max-tokens',
+                        default=DEFAULT_MAX_TOKENS,
+                        help='Max tokens for OpenAI Model')
+
+_temperature = click.option('--temperature',
+                        default=DEFAULT_TEMPERATURE,
+                        help='Temperature for OpenAI Model')
+
 def parse_params(ctx: click.core.Context, **kwargs):
 
     if kwargs['profile'].lower() != 'base':
-        if kwargs['system'] == BASE_SYSTEM_PROMPT:
+        if kwargs['system'] == DEFAULT_SYSTEM_PROMPT:
             try:
                 kwargs['system'] = load_profile(kwargs['profile'].lower())
             except FileNotFoundError:
