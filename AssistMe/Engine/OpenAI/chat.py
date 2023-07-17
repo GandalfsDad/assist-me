@@ -1,12 +1,11 @@
 import openai
-from .pompts import BASE_SYSTEM_PROMPT
+from .defaults import DEFAULT_SYSTEM_PROMPT, DEFAULT_MAX_TOKENS, DEFAULT_TEMPERATURE
 from ...CLI.format import format_input, format_response
-from . import DEFAULT_MAX_TOKENS, DEFAULT_TEMPERATURE
 import click
 
 class Chat:
 
-    def __init__(self, model: str, name: str, system_prompt : str = BASE_SYSTEM_PROMPT, max_tokens : int = DEFAULT_MAX_TOKENS, temperature : float = DEFAULT_TEMPERATURE):
+    def __init__(self, model: str, name: str, system_prompt : str = DEFAULT_SYSTEM_PROMPT, max_tokens : int = DEFAULT_MAX_TOKENS, temperature : float = DEFAULT_TEMPERATURE):
         self.model = model
         self.name = name
         self.__max_tokens = max_tokens
