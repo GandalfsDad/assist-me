@@ -8,7 +8,7 @@ _name = click.option('--name', '-n',
 
 _model = click.option('--model','-m', 
                         default='GPT3',
-                        type=click.Choice(['GPT3', 'GPT4'], case_sensitive=False),
+                        type=click.Choice(['GPT3', 'GPT4','PALM'], case_sensitive=False),
                         help='Model to use for generating text')
 
 _input = click.option('--input', '-i',
@@ -17,7 +17,7 @@ _input = click.option('--input', '-i',
 
 _system = click.option('--system', '-s',
                         default=DEFAULT_SYSTEM_PROMPT,
-                        help='System prompt')
+                        help='System prompt (Context for PALM)')
 
 _profile = click.option('--profile', '-p',
                         default='base',
@@ -29,7 +29,7 @@ _max_tokens = click.option('--max-tokens',
 
 _temperature = click.option('--temperature',
                         default=DEFAULT_TEMPERATURE,
-                        help='Temperature for OpenAI Model')
+                        help='Temperature for OpenAI & PALM Models')
 
 def parse_params(ctx: click.core.Context, **kwargs):
 
@@ -44,6 +44,8 @@ def parse_params(ctx: click.core.Context, **kwargs):
         else:
             save_profile(kwargs['profile'].lower(), kwargs['system'])
 
+        kwargs['name'] = kwargs['profile']
+        
     for key, value in kwargs.items():
         ctx.obj[key] = value
     return ctx
