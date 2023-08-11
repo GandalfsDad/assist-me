@@ -8,7 +8,7 @@ _name = click.option('--name', '-n',
 
 _model = click.option('--model','-m', 
                         default='GPT3',
-                        type=click.Choice(['GPT3', 'GPT4'], case_sensitive=False),
+                        type=click.Choice(['GPT3', 'GPT4','PALM'], case_sensitive=False),
                         help='Model to use for generating text')
 
 _input = click.option('--input', '-i',
