@@ -13,14 +13,15 @@ setup(
     url="https://github.com/GandalfsDad/assist-me",
     classifiers=[
         "License :: OSI Approved :: MIT License",
-        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.9",
         "Operating System :: OS Independent",
     ],
-    python_requires=">=3.10", 
+    python_requires=">=3.9", 
     install_requires=[
         'openai',
         'colorama',
-        'click'
+        'click',
+        'google-generativeai'
     ],
     packages=find_packages(),
     entry_points={
