@@ -17,7 +17,7 @@ _input = click.option('--input', '-i',
 
 _system = click.option('--system', '-s',
                         default=DEFAULT_SYSTEM_PROMPT,
-                        help='System prompt')
+                        help='System prompt (Context for PALM)')
 
 _profile = click.option('--profile', '-p',
                         default='base',
@@ -29,7 +29,7 @@ _max_tokens = click.option('--max-tokens',
 
 _temperature = click.option('--temperature',
                         default=DEFAULT_TEMPERATURE,
-                        help='Temperature for OpenAI Model')
+                        help='Temperature for OpenAI & PALM Models')
 
 def parse_params(ctx: click.core.Context, **kwargs):
 
