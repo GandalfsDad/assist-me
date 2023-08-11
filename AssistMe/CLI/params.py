@@ -44,6 +44,8 @@ def parse_params(ctx: click.core.Context, **kwargs):
         else:
             save_profile(kwargs['profile'].lower(), kwargs['system'])
 
+        kwargs['name'] = kwargs['profile']
+        
     for key, value in kwargs.items():
         ctx.obj[key] = value
     return ctx
